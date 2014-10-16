@@ -1,0 +1,22 @@
+/*
+   Header
+   ========================================================================== */
+.site-header {
+    border-bottom: 8px solid $topbar-link-bg-hover;
+    .main-navigation {
+        .dropdown {
+            li:not(.has-form) a:not(.button) {
+                line-height: 45px;
+            }
+        }
+    }
+    .connections-list {
+        float: right;
+        li:not(.has-form) a:not(.button) {
+            padding: 0 15px;
+            &:hover {
+                background: $topbar-bg-color;
+            }
+        }
+    }
+}

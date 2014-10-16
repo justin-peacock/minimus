@@ -1,0 +1,37 @@
+/*
+   Sidebar
+   ========================================================================== */
+.site-sidebar {
+    @include widget-lists;
+    .menu {
+        @include side-nav;
+    }
+    .widget {
+        margin: rem-calc(0 0 30);
+    }
+    /* Make sure select elements fit in widgets */
+    .widget select {
+        max-width: 100%;
+    }
+    /* Search widget */
+    .widget_search .search-submit {
+        display: none;
+    }
+    .widget_minimus_connections {
+        text-align: center;
+        .connections-list {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            & > li {
+                margin: 0 8px;
+                float: left;
+                & > a {
+                    display: block;
+                    font-size: rem-calc(27);
+                }
+            }
+        }
+    }
+}

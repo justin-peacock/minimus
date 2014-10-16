@@ -1,0 +1,17 @@
+{
+  "name": "minimus",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "foundation": "5.3.2",
+    "bourbon": "3.2.3",
+    "selectivizr": "~1.0.2",
+    "respond": "~1.4.2"
+  }
+}

@@ -1,0 +1,50 @@
+/*
+   Footer
+   ========================================================================== */
+.site-footer {
+    padding: 40px 0;
+    background-color: #293036;
+    .container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        border-top: 1px solid #555;
+    }
+    .site-info {
+        @include clearfix;
+        border-bottom: 1px solid #555;
+    }
+    .copyright {
+        float: left;
+        &:before {
+            margin-right: 5px;
+            @include fontawesome;
+            content: "\f1f9";
+        }
+    }
+    .designer {
+        float: right;
+    }
+    a {
+        color: #e1e1e1;
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .menu {
+        list-style: none;
+        margin-left: 0;
+        li {
+            a {
+                display: block;
+                padding: 5px 0;
+                font-size: rem-calc(14);
+            }
+        }
+    }
+    .widget-title {
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #666;
+    }
+}
