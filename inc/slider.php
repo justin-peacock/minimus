@@ -5,7 +5,7 @@
  */
 
 //Add additional generated image sizes
-add_image_size( 'slider-image', 1280, 450, true ); //(cropped)
+add_image_size( 'slider-image', 1280, 600, true ); //(cropped)
 
 function minimus_slider() {
 
@@ -144,6 +144,7 @@ function minimus_slider_output() {
         'posts_per_page' => -1,
         'order' => 'ASC'
     ) );
+
     if ( $query->have_posts() ) { ?>
         <ul class="site-slider" data-orbit>
             <?php while ( $query->have_posts() ) : $query->the_post(); ?>
@@ -153,15 +154,19 @@ function minimus_slider_output() {
             		<?php if (!empty( $slider_meta_fields[ 'slider_url' ] ) ) { ?>
             			<a href="<?php echo $slider_meta_fields[ 'slider_url' ][0]; ?>">
             		<?php } ?>
-          			<?php the_post_thumbnail('slide-image', array('class' => 'slide-image')); ?>
+	          			<?php the_post_thumbnail('slider-image', array('class' => 'slider-image')); ?>
           			<?php if (!empty( $slider_meta_fields[ 'slider_url' ] ) ) { ?>
             			</a>
             		<?php } ?>
             	<?php endif; ?>
-            	<div class="orbit-caption">
-								<?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
-								<?php the_content(); ?>
-							</div>
+
+							<?php
+							$thecontent = get_the_content();
+							if(!empty($thecontent)) { ?>
+	            	<div class="orbit-caption">
+									<?php the_content(); ?>
+								</div>
+							<?php } ?>
             </li>
             <?php endwhile;
             wp_reset_postdata(); ?>

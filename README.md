@@ -5,7 +5,7 @@
 Set the following to use un-minified versions of the assets.
 
 ```php
-define('WP_ENV', 'development');
+define( 'WP_ENV', 'development' );
 ```
 
 ### Install Grunt and Bower

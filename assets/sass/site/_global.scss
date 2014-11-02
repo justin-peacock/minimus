@@ -37,9 +37,7 @@ img {
 }
 
 input[type="submit"] {
-    @extend .button;
-    @extend .small;
-    @extend .radius;
+    @include button($padding: $button-sml, $radius: true);
 }
 
 @media screen and (max-width: 782px) {

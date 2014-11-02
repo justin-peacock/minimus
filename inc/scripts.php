@@ -21,7 +21,7 @@ function minimus_scripts() {
 			'rtl'       => '/assets/css/main-rtl.css',
 			'child'     => '/style.css',
 			'fonts'     => '//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700',
-			'icons'     => '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css',
+			'icons'     => '/assets/css/font-awesome.css',
 			'js'        => '/assets/js/scripts.js',
 			'modernizr' => '/bower_components/modernizr/modernizr.js',
 			'livereload'  => '//localhost:35729/livereload.js'
@@ -34,7 +34,7 @@ function minimus_scripts() {
 			'rtl'       => '/assets/css/main-rtl.css?' . $assets['assets/css/main.min.css']['hash'],
 			'child'     => '/style.css?' . $assets['assets/css/main.min.css']['hash'],
 			'fonts'     => '//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700?' . $assets['assets/css/main.min.css']['hash'],
-			'icons'     => '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?' . $assets['assets/css/main.min.css']['hash'],
+			'icons'     => '/assets/css/font-awesome.min.css?' . $assets['assets/css/main.min.css']['hash'],
 			'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
 			'modernizr' => '/assets/js/vendor/modernizr.min.js'
 		);
@@ -42,7 +42,7 @@ function minimus_scripts() {
 
 	wp_enqueue_style('minimus_css', get_template_directory_uri() . $assets['css'], false, null);
 	wp_enqueue_style('minimus_fonts', $assets['fonts'], false, null);
-	wp_enqueue_style('minimus_icons', $assets['icons'], false, null);
+	wp_enqueue_style('minimus_icons', get_template_directory_uri() . $assets['icons'], false, null);
 
 	if ( is_child_theme() ){
 		wp_enqueue_style('minimus_child', get_stylesheet_directory_uri() . $assets['child'], false, null);

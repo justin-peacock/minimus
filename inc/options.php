@@ -184,11 +184,12 @@ function minimus_connections() {
 		'instagram' => '',
 		'linkedin' => '',
 		'google-plus' => '',
-		'vimeo' => '',
-		'pinterest' => '');
+		'vimeo' => '');
 	$html = '';
 	foreach ($networks as $network => $prefix) {
-		if (!empty(get_option('minimus_options')[$network])) {
+		$option = get_option('minimus_options');
+		$href = $option[$network];
+		if (!empty($href) ) {
 			$href = get_option('minimus_options')[$network];
 			$html .= '<li>';
 				$html .= '<a href="' . $href . '" class="' . $network . '-icon">';

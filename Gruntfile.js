@@ -28,7 +28,6 @@ module.exports = function(grunt) {
     'bower_components/foundation/js/foundation/foundation.tab.js',
     'bower_components/foundation/js/foundation/foundation.tooltip.js',
     'bower_components/foundation/js/foundation/foundation.topbar.js',
-    'bower_components/parallaxify/src/parallaxify.js',
 
     // Init Scripts
     'assets/js/_*.js'
@@ -54,8 +53,7 @@ module.exports = function(grunt) {
         "undef": true,
         "globals": {
           "jQuery": true,
-          "alert": true,
-          "Parallaxify": false
+          "alert": true
         }
       },
       all: [
@@ -68,28 +66,20 @@ module.exports = function(grunt) {
     },
     sass: {
       options: {
+        style: 'expanded',
         includePaths: [
+          'bower_components/fontawesome/scss',
           'bower_components/foundation/scss',
           'bower_components/bourbon/dist'
         ]
       },
       dev: {
-        options: {
-          style: 'expanded'
-        },
         files: {
           'assets/css/main.css': [
             'assets/sass/main.scss'
-          ]
-        }
-      },
-      build: {
-        options: {
-          style: 'compressed'
-        },
-        files: {
-          'assets/css/main.min.css': [
-            'assets/sass/main.scss'
+          ],
+          'assets/css/font-awesome.css': [
+            'assets/sass/font-awesome.scss'
           ]
         }
       }
@@ -129,9 +119,14 @@ module.exports = function(grunt) {
           }
         },
         src: 'assets/css/main.css'
+      }
+    },
+    csscomb: {
+      options: {
+        config: '.csscomb.json'
       },
-      build: {
-        src: 'assets/css/main.min.css'
+      files: {
+        'assets/css/main.css': ['assets/css/main.css'],
       }
     },
     pixrem: {
@@ -153,6 +148,24 @@ module.exports = function(grunt) {
         ]
       }
     },
+    cssmin: {
+      minify: {
+        expand: true,
+        cwd: 'assets/css/',
+        src: ['*.css', '!*.min.css', '!rem-fallback.css', '!main-rtl.css'],
+        dest: 'assets/css/',
+        ext: '.min.css'
+      }
+    },
+    copy: {
+      main: {
+        expand: true,
+        flatten: true,
+        filter: 'isFile',
+        src: 'bower_components/fontawesome/fonts/*',
+        dest: 'assets/fonts/'
+      },
+    },
     modernizr: {
       build: {
         devFile: 'bower_components/modernizr/modernizr.js',
@@ -167,6 +180,16 @@ module.exports = function(grunt) {
         parseFiles: true
       }
     },
+    // https://www.npmjs.org/package/grunt-wp-i18n
+    makepot: {
+      target: {
+        options: {
+          domainPath: '/languages/',
+          potFilename: 'minimus.pot',
+          type: 'wp-theme'
+        }
+      }
+    },
     version: {
       default: {
         options: {
@@ -174,13 +197,24 @@ module.exports = function(grunt) {
           length: 32,
           manifest: 'assets/manifest.json',
           querystring: {
-            style: 'sfcc_css',
-            script: 'sfcc_js'
+            style: 'minimus_css',
+            script: 'minimus_js'
           }
         },
         files: {
           'inc/scripts.php': 'assets/{css,js}/{main,scripts}.min.{css,js}'
         }
+      }
+    },
+    clean: {
+      dist: {
+        src: [
+          'assets/css/*',
+          'assets/fonts/*',
+          'assets/js/*.js',
+          'assets/js/vendor/',
+          '!assets/js/_*.js',
+        ]
       }
     },
     watch: {
@@ -190,10 +224,10 @@ module.exports = function(grunt) {
           'assets/sass/**/*.scss'
         ],
         tasks: [
-          'sass:dev',
-          'autoprefixer:dev',
-          'pixrem:dev',
-          'cssjanus:dev',
+          'sass',
+          'autoprefixer',
+          'pixrem',
+          'cssjanus',
           'notify:sass'
         ]
       },
@@ -220,6 +254,19 @@ module.exports = function(grunt) {
           'templates/*.php',
           '*.php'
         ]
+      }
+    },
+    devUpdate: {
+      main: {
+        options: {
+          updateType: 'report',
+          reportUpdated: false,
+          semver: true,
+          packages: {
+            devDependencies: true,
+            dependencies: false
+          }
+        }
       }
     },
     notify: {
@@ -256,21 +303,24 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('dev', [
     'jshint',
-    'sass:dev',
-    'autoprefixer:dev',
-    'pixrem:dev',
-    'cssjanus:dev',
+    'sass',
+    'autoprefixer',
+    'csscomb',
+    'pixrem',
+    'cssjanus',
+    'copy',
     'uglify:ie',
     'concat',
     'notify:dev'
   ]);
   grunt.registerTask('build', [
-    'jshint',
-    'sass:build',
-    'autoprefixer:build',
+    'clean',
+    'dev',
+    'cssmin',
     'uglify',
     'modernizr',
     'version',
+    'makepot',
     'notify:build'
   ]);
 };

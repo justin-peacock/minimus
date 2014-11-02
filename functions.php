@@ -6,29 +6,29 @@
  */
 
 /**
- * Leroy Wilson Drums includes
+ * Minimus includes
  *
- * The $lwd_includes array determines the code library included in your theme.
+ * The $minimus_includes array determines the code library included in your theme.
  * Add or remove files to the array as needed. Supports child theme overrides.
  *
  */
 $lwd_includes = array(
-    'inc/options.php',
-    'inc/scripts.php',
-    'inc/topbar.php',
-    'inc/slider.php',
-    'inc/widgets.php',
-    'inc/template-tags.php',
-    'inc/extras.php',
-    'inc/jetpack.php'
+	'inc/options.php',
+	'inc/scripts.php',
+	'inc/topbar.php',
+	'inc/slider.php',
+	'inc/widgets.php',
+	'inc/template-tags.php',
+	'inc/extras.php',
+	'inc/jetpack.php'
 );
 
 foreach ( $lwd_includes as $file ) {
-    if ( !$filepath = locate_template( $file ) ) {
-        trigger_error( sprintf( __( 'Error locating %s for inclusion', 'lwd' ), $file ), E_USER_ERROR );
-    }
+	if ( !$filepath = locate_template( $file ) ) {
+	  trigger_error( sprintf( __( 'Error locating %s for inclusion', 'minimus' ), $file ), E_USER_ERROR );
+	}
 
-    require_once $filepath;
+  require_once $filepath;
 }
 unset( $file, $filepath );
 
@@ -128,11 +128,9 @@ add_action( 'widgets_init', 'minimus_widgets_init' );
  * Add Font Awesome to Admin
  */
 function minumus_admin_styles() {
-
 	wp_deregister_style( 'minumus-font-awesome' );
-	wp_register_style( 'minumus-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', false, '4.2.0' );
+	wp_register_style( 'minumus-font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', false, null );
 	wp_enqueue_style( 'minumus-font-awesome' );
-
 }
 add_action( 'admin_enqueue_scripts', 'minumus_admin_styles' );
 
