@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Minimus 0.1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/style\n"
-"POT-Creation-Date: 2014-11-11 14:52:13+00:00\n"
+"POT-Creation-Date: 2014-11-11 20:16:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -149,83 +149,91 @@ msgstr ""
 msgid "Page %s"
 msgstr ""
 
-#: inc/options.php:17
+#: inc/options.php:22
 msgid "Minimus Options"
 msgstr ""
 
-#: inc/options.php:30
+#: inc/options.php:35
 msgid " Options"
 msgstr ""
 
-#: inc/options.php:33
+#: inc/options.php:38
 msgid "Options saved"
 msgstr ""
 
-#: inc/options.php:47
+#: inc/options.php:52
+msgid "Navigation"
+msgstr ""
+
+#: inc/options.php:55
+msgid "Fixed"
+msgstr ""
+
+#: inc/options.php:64
 msgid "Twitter"
 msgstr ""
 
-#: inc/options.php:50
+#: inc/options.php:67
 msgid "http://twitter.com/username"
 msgstr ""
 
-#: inc/options.php:58
+#: inc/options.php:75
 msgid "Facebook"
 msgstr ""
 
-#: inc/options.php:61
+#: inc/options.php:78
 msgid "http://facebook.com/username"
 msgstr ""
 
-#: inc/options.php:69
+#: inc/options.php:86
 msgid "Instagram"
 msgstr ""
 
-#: inc/options.php:72
+#: inc/options.php:89
 msgid "http://instagram.com/username"
 msgstr ""
 
-#: inc/options.php:80
+#: inc/options.php:97
 msgid "Flickr"
 msgstr ""
 
-#: inc/options.php:83
+#: inc/options.php:100
 msgid "http://flickr.com/username"
 msgstr ""
 
-#: inc/options.php:91
+#: inc/options.php:108
 msgid "Linkedin"
 msgstr ""
 
-#: inc/options.php:94
+#: inc/options.php:111
 msgid "http://linkedin.com/username"
 msgstr ""
 
-#: inc/options.php:102
+#: inc/options.php:119
 msgid "YouTube"
 msgstr ""
 
-#: inc/options.php:105
+#: inc/options.php:122
 msgid "http://youtube.com/username"
 msgstr ""
 
-#: inc/options.php:113
+#: inc/options.php:130
 msgid "Vimeo"
 msgstr ""
 
-#: inc/options.php:116
+#: inc/options.php:133
 msgid "http://vimeo.com/username"
 msgstr ""
 
-#: inc/options.php:124
+#: inc/options.php:141
 msgid "Pinterest"
 msgstr ""
 
-#: inc/options.php:127
+#: inc/options.php:144
 msgid "http://pinterest.com/username"
 msgstr ""
 
-#: inc/options.php:133
+#: inc/options.php:150
 msgid "Save Options"
 msgstr ""
 

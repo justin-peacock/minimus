@@ -1,4 +1,9 @@
 <?php
+/**
+ * Theme Options
+ * Example output
+ * <?php echo get_option('minimus_theme_options')['variable_name']; ?>
+ */
 
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' );
@@ -38,6 +43,18 @@ function theme_options_do_page() {
 			<?php $options = get_option( 'minimus_theme_options' ); ?>
 
 			<table class="form-table">
+
+				<?php
+				/**
+				 * Fixed Navigation
+				 */
+				?>
+				<tr valign="top"><th scope="row"><?php _e( 'Navigation', 'minimus' ); ?></th>
+					<td>
+						<input id="minimus_theme_options[fixed_nav]" name="minimus_theme_options[fixed_nav]" type="checkbox" value="1" <?php checked( '1', $options['fixed_nav'] ); ?> />
+						<label class="description" for="minimus_theme_options[fixed_nav]"><?php _e( 'Fixed', 'minimus' ); ?></label>
+					</td>
+				</tr>
 
 				<?php
 				/**

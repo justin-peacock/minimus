@@ -26,10 +26,7 @@ function minimus_build_topbar() {
 }
 
 /**
-* Navigation Menu Adjustments
-*/
-/**
-* Navigation Menu Adjustments
+* Navigation Menu Walker
 */
 class minimus_topbar_walker extends Walker_Nav_Menu {
   function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
@@ -55,4 +52,13 @@ class minimus_topbar_walker extends Walker_Nav_Menu {
   function start_lvl( &$output, $depth = 0, $args = array() ) {
     $output .= "\n<ul class=\"sub-menu dropdown\">\n";
   }
+}
+
+/**
+ * Fixed Navigation
+ */
+function minimus_fixed_navigation() {
+	if (!empty(get_option('minimus_theme_options')['fixed_nav'])) {
+		echo " fixed";
+	}
 }

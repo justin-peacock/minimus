@@ -6629,6 +6629,11 @@ input[type="submit"] {
       padding: 0 15px; }
       .site-header .connections-list li:not(.has-form) a:not(.button):hover {
         background: #1e8ad2; }
+  .admin-bar .site-header.fixed {
+    top: 32px; }
+    @media screen and (max-width: 782px) {
+      .admin-bar .site-header.fixed {
+        top: 46px; } }
 
 /*
    Sidebar
