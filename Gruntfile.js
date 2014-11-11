@@ -306,7 +306,10 @@ module.exports = function(grunt) {
 
   // Register tasks
   grunt.registerTask('default', [
-    'dev'
+    'clean',
+    'stylesheets',
+    'scripts',
+    'notify:dev'
   ]);
   grunt.registerTask('stylesheets', [
     'sass',
@@ -321,14 +324,8 @@ module.exports = function(grunt) {
     'uglify:ie',
     'concat'
   ]);
-  grunt.registerTask('dev', [
-    'clean',
-    'stylesheets',
-    'scripts',
-    'notify:dev'
-  ]);
   grunt.registerTask('build', [
-    'dev',
+    'default',
     'cssmin',
     'uglify',
     'modernizr',
