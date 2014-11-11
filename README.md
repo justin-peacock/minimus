@@ -25,4 +25,4 @@ When completed, you'll be able to run the various Grunt commands provided from t
 * `grunt watch` — Compile assets when file changes are made
 * `grunt build` — Create minified assets that are used on non-development environments
 
-![Minimus](http://mrdk.in/K6s9+ "Minimus")
+![Minimus](http://mrdk.in/1a9Il+ "Minimus")
