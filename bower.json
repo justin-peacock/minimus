@@ -1,6 +1,6 @@
 {
   "name": "minimus",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "ignore": [
     "**/.*",
@@ -9,9 +9,9 @@
   ],
   "dependencies": {
     "foundation": "zurb/bower-foundation",
-    "bourbon": "3.2.3",
+    "fontawesome": "~4.2.0",
+    "bourbon": "~4.0.2",
     "selectivizr": "~1.0.2",
-    "respond": "~1.4.2",
-    "fontawesome": "~4.2.0"
+    "respond": "~1.4.2"
   }
 }

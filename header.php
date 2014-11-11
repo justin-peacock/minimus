@@ -36,11 +36,6 @@
 				<?php if ( function_exists( 'minimus_build_topbar') ) { ?>
 					<?php minimus_build_topbar(); ?>
 				<?php } ?>
-				<?php if ( function_exists( 'minimus_connections') ) { ?>
-					<?php minimus_connections(); ?>
-				<?php } ?>
 			</section><!-- .top-bar-section -->
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">

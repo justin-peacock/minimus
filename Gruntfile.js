@@ -6,30 +6,27 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
   var jsFileList = [
-    // Vendor
-    'bower_components/foundation/js/vendor/fastclick.js',
-    'bower_components/foundation/js/vendor/placeholder.js',
+    // Foundation Vendor
+    "bower_components/foundation/js/vendor/fastclick.js",
+    "bower_components/foundation/js/vendor/placeholder.js",
 
     // Foundation Core
-    'bower_components/foundation/js/foundation/foundation.js',
-    'bower_components/foundation/js/foundation/foundation.abide.js',
-    'bower_components/foundation/js/foundation/foundation.accordion.js',
-    'bower_components/foundation/js/foundation/foundation.alert.js',
-    'bower_components/foundation/js/foundation/foundation.clearing.js',
-    'bower_components/foundation/js/foundation/foundation.dropdown.js',
-    'bower_components/foundation/js/foundation/foundation.equalizer.js',
-    'bower_components/foundation/js/foundation/foundation.interchange.js',
-    'bower_components/foundation/js/foundation/foundation.joyride.js',
-    'bower_components/foundation/js/foundation/foundation.magellan.js',
-    'bower_components/foundation/js/foundation/foundation.offcanvas.js',
-    'bower_components/foundation/js/foundation/foundation.orbit.js',
-    'bower_components/foundation/js/foundation/foundation.reveal.js',
-    'bower_components/foundation/js/foundation/foundation.slider.js',
-    'bower_components/foundation/js/foundation/foundation.tab.js',
-    'bower_components/foundation/js/foundation/foundation.tooltip.js',
-    'bower_components/foundation/js/foundation/foundation.topbar.js',
-
-    // Init Scripts
+    "bower_components/foundation/js/foundation/foundation.js",
+    "bower_components/foundation/js/foundation/foundation.abide.js",
+    "bower_components/foundation/js/foundation/foundation.accordion.js",
+    "bower_components/foundation/js/foundation/foundation.alert.js",
+    "bower_components/foundation/js/foundation/foundation.clearing.js",
+    "bower_components/foundation/js/foundation/foundation.dropdown.js",
+    "bower_components/foundation/js/foundation/foundation.equalizer.js",
+    "bower_components/foundation/js/foundation/foundation.interchange.js",
+    "bower_components/foundation/js/foundation/foundation.joyride.js",
+    "bower_components/foundation/js/foundation/foundation.magellan.js",
+    "bower_components/foundation/js/foundation/foundation.offcanvas.js",
+    "bower_components/foundation/js/foundation/foundation.orbit.js",
+    "bower_components/foundation/js/foundation/foundation.reveal.js",
+    "bower_components/foundation/js/foundation/foundation.tab.js",
+    "bower_components/foundation/js/foundation/foundation.tooltip.js",
+    "bower_components/foundation/js/foundation/foundation.topbar.js",
     'assets/js/_*.js'
   ];
 
@@ -66,20 +63,21 @@ module.exports = function(grunt) {
     },
     sass: {
       options: {
-        style: 'expanded',
         includePaths: [
-          'bower_components/fontawesome/scss',
           'bower_components/foundation/scss',
           'bower_components/bourbon/dist'
         ]
       },
       dev: {
+        options: {
+          style: 'expanded'
+        },
         files: {
           'assets/css/main.css': [
             'assets/sass/main.scss'
           ],
           'assets/css/font-awesome.css': [
-            'assets/sass/font-awesome.scss'
+            'bower_components/fontawesome/scss/font-awesome.scss'
           ]
         }
       }
@@ -150,6 +148,7 @@ module.exports = function(grunt) {
     },
     cssmin: {
       minify: {
+        keepSpecialComments: 0,
         expand: true,
         cwd: 'assets/css/',
         src: ['*.css', '!*.min.css', '!rem-fallback.css', '!main-rtl.css'],
@@ -217,6 +216,17 @@ module.exports = function(grunt) {
         ]
       }
     },
+    imagemin: {
+      dist: {
+        files: [{
+          progressive: true,
+          expand: true,
+          cwd: 'assets/img/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: 'assets/img/'
+        }]
+      }
+    },
     watch: {
       sass: {
         files: [
@@ -224,10 +234,7 @@ module.exports = function(grunt) {
           'assets/sass/**/*.scss'
         ],
         tasks: [
-          'sass',
-          'autoprefixer',
-          'pixrem',
-          'cssjanus',
+          'stylesheets',
           'notify:sass'
         ]
       },
@@ -237,8 +244,7 @@ module.exports = function(grunt) {
           '<%= jshint.all %>'
         ],
         tasks: [
-          'jshint',
-          'concat',
+          'scripts',
           'notify:js'
         ]
       },
@@ -265,7 +271,8 @@ module.exports = function(grunt) {
           packages: {
             devDependencies: true,
             dependencies: false
-          }
+          },
+          packageJson: null
         }
       }
     },
@@ -301,25 +308,32 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'dev'
   ]);
-  grunt.registerTask('dev', [
-    'jshint',
+  grunt.registerTask('stylesheets', [
     'sass',
     'autoprefixer',
     'csscomb',
     'pixrem',
-    'cssjanus',
+    'cssjanus'
+  ]);
+  grunt.registerTask('scripts', [
+    'jshint',
     'copy',
     'uglify:ie',
-    'concat',
+    'concat'
+  ]);
+  grunt.registerTask('dev', [
+    'clean',
+    'stylesheets',
+    'scripts',
     'notify:dev'
   ]);
   grunt.registerTask('build', [
-    'clean',
     'dev',
     'cssmin',
     'uglify',
     'modernizr',
     'version',
+    'imagemin',
     'makepot',
     'notify:build'
   ]);

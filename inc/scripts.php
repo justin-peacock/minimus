@@ -78,29 +78,3 @@ function minimus_ie_scripts() {
 		<?php
 }
 add_action( 'wp_head', 'minimus_ie_scripts', 8 );
-
-/**
- * Google Analytics snippet from HTML5 Boilerplate
- *
- * Cookie domain is 'auto' configured. See: http://goo.gl/VUCHKM
- */
-function minimus_google_analytics() { ?>
-<script>
-  <?php if (WP_ENV === 'production') : ?>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-  <?php else : ?>
-    function ga() {
-      console.log('GoogleAnalytics: ' + [].slice.call(arguments));
-    }
-  <?php endif; ?>
-  ga('create','<?php echo get_option('minimus_options')['ga']; ?>','auto');ga('send','pageview');
-</script>
-
-<?php }
-if (get_option('minimus_options')['ga'] && (WP_ENV !== 'production' || !current_user_can('manage_options'))) {
-  add_action('wp_footer', 'minimus_google_analytics', 20);
-}

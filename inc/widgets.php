@@ -166,7 +166,7 @@ class minimus_widget_button extends WP_Widget {
 
 		 // Check if link is set
 		 if( $link && $link_text ) {
-			echo '<a href="'.$link.'" class="button round">'.$link_text.'</a>'."\n";
+			echo '<a href="'.$link.'" class="button">'.$link_text.'</a>'."\n";
 		 }
 
 		 echo $after_widget;
@@ -179,13 +179,13 @@ add_action('widgets_init', create_function('', 'return register_widget("minimus_
 /**
  * Connections Widget
  */
-class minimus_widget_connections extends WP_Widget {
+class minimus_widget_social_links extends WP_Widget {
 
 	// constructor
 	function __construct() {
-		$widget_ops = array('description' => __('Display social icon links set in the Options.', 'minimus_widget_connections'));
+		$widget_ops = array('description' => __('Display social icon links set in the Options.', 'minimus_widget_social_links'));
 		$control_ops = array('width' => 400, 'height' => 300);
-		parent::WP_Widget(false, $name = __('Minimus - Connections', 'minimus_widget_connections'), $widget_ops, $control_ops );
+		parent::WP_Widget(false, $name = __('Villa Rica - Social Links', 'minimus_widget_social_links'), $widget_ops, $control_ops );
 	}
 
 	// widget form creation
@@ -216,23 +216,22 @@ class minimus_widget_connections extends WP_Widget {
 
 	// display widget
 	function widget($args, $instance) {
-		 extract( $args );
-		 // these are the widget options
-		 $title = apply_filters('widget_title', $instance['title']);
+		extract( $args );
+		// these are the widget options
+		$title = apply_filters('widget_title', $instance['title']);
 
-		 echo $before_widget;
+		echo $before_widget;
 
-	 	 // Check if title is set
-	 	 if ( $title ) {
-	 		echo $before_title . $title . $after_title;
-	 	 }
+		// Check if title is set
+		if ( $title ) {
+			echo $before_title . $title . $after_title;
+		}
 
-	 	 // minimus-daum-museum/inc/options.php
-		 minimus_connections();
+		minimus_social_links();
 
-		 echo $after_widget;
+		echo $after_widget;
 	}
 }
 
 // register widget
-add_action('widgets_init', create_function('', 'return register_widget("minimus_widget_connections");'));
+add_action('widgets_init', create_function('', 'return register_widget("minimus_widget_social_links");'));

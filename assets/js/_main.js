@@ -9,13 +9,18 @@
  * The routing is enclosed within an anonymous function so that you can
  * always reference jQuery with $, even when in .noConflict() mode.
  *
+ * Minimus
+ * https://github.com/mrdink/minimus/
+ *
+ * Copyright (c) 2014 Justin Peacock
+ * Licensed under the GPLv2+ license.
  * ======================================================================== */
 
 (function($) {
 
   // Use this variable to set up the common and page specific functions. If you
   // rename this variable, you will also need to rename the namespace below.
-  var Minimus = {
+  var MINIMUS = {
     // All pages
     common: {
       init: function() {
@@ -30,10 +35,7 @@
     home: {
       init: function() {
         // JavaScript to be fired on the home page
-        $(document).ready(function() {
-          // orbit handler
-          $('ul.site-slider').removeClass('hide');
-        });
+
       }
     }
   };
@@ -42,7 +44,7 @@
   // Add additional events for more control over timing e.g. a finalize event
   var UTIL = {
     fire: function(func, funcname, args) {
-      var namespace = Minimus;
+      var namespace = MINIMUS;
       funcname = (funcname === undefined) ? 'init' : funcname;
       if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
         namespace[func][funcname](args);

@@ -11,6 +11,51 @@ if ( ! function_exists( 'minimus_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
  */
+function minimus_paging_nav($arrows = true, $ends = true, $pages = 2) {
+    if (is_singular()) return;
+
+    global $wp_query, $paged;
+    $pagination = '';
+
+    $max_page = $wp_query->max_num_pages;
+    if ($max_page == 1) return;
+    if (empty($paged)) $paged = 1;
+
+    if ($arrows) $pagination .= minimus_pagination_link($paged - 1, 'arrow' . (($paged <= 1) ? ' unavailable' : ''), '&laquo;', 'Previous Page');
+    if ($ends && $paged > $pages + 1) $pagination .= minimus_pagination_link(1);
+    if ($ends && $paged > $pages + 2) $pagination .= minimus_pagination_link(1, 'unavailable', '&hellip;');
+    for ($i = $paged - $pages; $i <= $paged + $pages; $i++) {
+        if ($i > 0 && $i <= $max_page)
+            $pagination .= minimus_pagination_link($i, ($i == $paged) ? 'current' : '');
+    }
+    if ($ends && $paged < $max_page - $pages - 1) $pagination .= minimus_pagination_link($max_page, 'unavailable', '&hellip;');
+    if ($ends && $paged < $max_page - $pages) $pagination .= minimus_pagination_link($max_page);
+
+    if ($arrows) $pagination .= minimus_pagination_link($paged + 1, 'arrow' . (($paged >= $max_page) ? ' unavailable' : ''), '&raquo;', 'Next Page');
+
+    $pagination = '<ul class="pagination">' . $pagination . '</ul>';
+
+    echo $pagination;
+}
+endif;
+
+if ( ! function_exists( 'minimus_pagination_link' ) ) :
+function minimus_pagination_link($page, $class = '', $content = '', $title = '') {
+    $id = sanitize_title_with_dashes('pagination-page-' . $page . ' ' . $class);
+    $href = (strrpos($class, 'unavailable') === false && strrpos($class, 'current') === false) ? get_pagenum_link($page) : "#$id";
+
+    $class = empty($class) ? $class : " class=\"$class\"";
+    $content = !empty($content) ? $content : $page;
+    $title = !empty($title) ? $title : 'Page ' . $page;
+
+    return "<li$class><a id=\"$id\" href=\"$href\" title=\"$title\">$content</a></li>\n";
+}
+endif;
+
+if ( ! function_exists( 'minimus_paging_nav' ) ) :
+/**
+ * Display navigation to next/previous set of posts when applicable.
+ */
 function minimus_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
@@ -85,7 +130,7 @@ function minimus_posted_on() {
 
 	$byline = sprintf(
 		_x( 'by %s', 'post author', 'minimus' ),
-		'<span class="author"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
 	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';

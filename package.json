@@ -1,30 +1,37 @@
 {
   "name": "minimus",
-  "version": "1.0.0",
-  "engines": {
-    "node": ">= 0.10.0"
+  "title": "Minimus",
+  "description": "Sass + Grunt WordPress theme",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mrdink/minimus/",
+  "author": {
+    "name": "Justin Peacock",
+    "email": "contact@byjust.in",
+    "url": "http://byjust.in"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
+    "load-grunt-tasks": "^1.0.0",
+    "node-sass": "^1.2.1",
+    "time-grunt": "^1.0.0",
+    "grunt-sass": "^0.16.1",
+    "grunt-csscomb": "^3.0.0",
+    "grunt-cssjanus": "^0.2.2",
     "grunt-autoprefixer": "~1.0.1",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-pixrem": "~0.1.1",
+    "grunt-contrib-imagemin": "^0.9.1",
+    "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-cssmin": "^0.10.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-csscomb": "^3.0.0",
-    "grunt-cssjanus": "^0.2.2",
-    "grunt-dev-update": "^1.0.0",
+    "grunt-dev-update": "^1.0.1",
     "grunt-modernizr": "^0.6.0",
     "grunt-notify": "^0.3.1",
-    "grunt-pixrem": "~0.1.1",
-    "grunt-sass": "^0.16.1",
-    "grunt-wp-assets": "~0.2.6",
-    "grunt-wp-i18n": "~0.4.3",
-    "load-grunt-tasks": "^1.0.0",
-    "node-sass": "^1.0.3",
-    "time-grunt": "^1.0.0"
-  }
+    "grunt-wp-i18n": "^0.4.9",
+    "grunt-wp-assets": "~0.2.6"
+  },
+  "keywords": []
 }
