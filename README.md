@@ -24,3 +24,5 @@ When completed, you'll be able to run the various Grunt commands provided from t
 * `grunt dev` — Compile Sass to CSS, concatenate and validate JS
 * `grunt watch` — Compile assets when file changes are made
 * `grunt build` — Create minified assets that are used on non-development environments
+
+![Minimus](http://mrdk.in/K6s9+ "Minimus")
